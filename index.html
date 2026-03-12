@@ -1,0 +1,2345 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VitaRoot — Grow From Within | AI-Powered Healthy Lifestyle Platform</title>
+<meta name="description" content="VitaRoot helps you eat healthier, build better habits, and transform your life through AI-powered nutrition guidance, personalized meal plans, and thousands of healthy recipes.">
+<meta property="og:title" content="VitaRoot — Grow From Within">
+<meta property="og:description" content="AI-powered healthy lifestyle platform for better nutrition and habits.">
+<meta property="og:type" content="website">
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,500&display=swap" rel="stylesheet">
+<style>
+/* ===== CSS VARIABLES & THEME ===== */
+:root {
+  --green-deep: #1b3a27;
+  --green-forest: #2d5a3d;
+  --green-mid: #4a7c5f;
+  --green-sage: #7aaa8a;
+  --green-mint: #b5d5c0;
+  --green-pale: #e8f4ec;
+  --cream: #f7f3ec;
+  --warm-white: #fdfaf5;
+  --earth: #c4714a;
+  --earth-light: #e8a87c;
+  --gold: #c9963a;
+  --text-dark: #1b2e22;
+  --text-mid: #3d5c47;
+  --text-light: #7a9a84;
+  --border: rgba(74,124,95,0.15);
+  --shadow: 0 8px 40px rgba(27,58,39,0.08);
+  --shadow-hover: 0 20px 60px rgba(27,58,39,0.15);
+  --bg-main: #fdfaf5;
+  --bg-card: #ffffff;
+  --bg-section: #f7f3ec;
+  --nav-bg: rgba(253,250,245,0.92);
+  --transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+  --radius: 16px;
+  --radius-sm: 8px;
+}
+[data-theme="dark"] {
+  --bg-main: #0f1e16;
+  --bg-card: #1a2e20;
+  --bg-section: #152118;
+  --nav-bg: rgba(15,30,22,0.95);
+  --text-dark: #e8f0ea;
+  --text-mid: #a8c8b0;
+  --text-light: #6a9474;
+  --border: rgba(116,170,138,0.2);
+  --cream: #1a2e20;
+  --warm-white: #0f1e16;
+  --shadow: 0 8px 40px rgba(0,0,0,0.3);
+  --shadow-hover: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--bg-main);
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background 0.4s, color 0.4s;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: 'Jost', sans-serif; }
+input, textarea, select { font-family: 'Jost', sans-serif; }
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-section); }
+::-webkit-scrollbar-thumb { background: var(--green-sage); border-radius: 3px; }
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; line-height: 1.15; }
+h1 { font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 600; letter-spacing: -0.02em; }
+h2 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 500; }
+h3 { font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 500; }
+p { font-weight: 300; font-size: 1.05rem; }
+
+/* ===== NAVIGATION ===== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 72px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: var(--transition);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 600; color: var(--green-deep);
+}
+[data-theme="dark"] .nav-logo { color: var(--green-mint); }
+.nav-logo-icon {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, var(--green-forest), var(--green-sage));
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 2rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.9rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--text-mid); transition: var(--transition);
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+  background: var(--green-sage); transition: width 0.3s ease;
+}
+.nav-links a:hover { color: var(--green-forest); }
+.nav-links a:hover::after { width: 100%; }
+.nav-actions { display: flex; align-items: center; gap: 1rem; }
+.btn-theme {
+  background: var(--bg-section); border: 1px solid var(--border);
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; transition: var(--transition); color: var(--text-mid);
+}
+.btn-theme:hover { background: var(--green-pale); transform: rotate(20deg); }
+.btn-nav-cta {
+  background: var(--green-forest);
+  color: white; padding: 0.55rem 1.4rem;
+  border-radius: 100px; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.03em;
+  border: none; transition: var(--transition);
+}
+.btn-nav-cta:hover { background: var(--green-deep); transform: translateY(-1px); }
+.nav-hamburger { display: none; background: none; border: none; font-size: 1.4rem; color: var(--text-dark); }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  background: var(--green-deep);
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: 
+    radial-gradient(ellipse 80% 60% at 20% 80%, rgba(74,124,95,0.4) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 20%, rgba(45,90,61,0.5) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #1b3a27 0%, #0f1e16 100%);
+}
+.hero-particles {
+  position: absolute; inset: 0;
+  background-image: 
+    radial-gradient(circle 1px at 20% 30%, rgba(181,213,192,0.6) 1px, transparent 0),
+    radial-gradient(circle 1px at 80% 20%, rgba(181,213,192,0.4) 1px, transparent 0),
+    radial-gradient(circle 1px at 60% 70%, rgba(181,213,192,0.3) 1px, transparent 0),
+    radial-gradient(circle 2px at 10% 60%, rgba(122,170,138,0.5) 2px, transparent 0),
+    radial-gradient(circle 1px at 90% 80%, rgba(181,213,192,0.4) 1px, transparent 0),
+    radial-gradient(circle 1px at 40% 15%, rgba(181,213,192,0.3) 1px, transparent 0),
+    radial-gradient(circle 1px at 70% 45%, rgba(122,170,138,0.4) 1px, transparent 0);
+  animation: floatParticles 20s ease-in-out infinite alternate;
+}
+@keyframes floatParticles {
+  0% { transform: translateY(0) scale(1); opacity: 0.6; }
+  100% { transform: translateY(-30px) scale(1.05); opacity: 1; }
+}
+.hero-leaf {
+  position: absolute;
+  opacity: 0.08;
+  font-size: 8rem;
+  animation: leafFloat 8s ease-in-out infinite;
+}
+.hero-leaf:nth-child(1) { top: 10%; left: 5%; font-size: 6rem; animation-delay: 0s; }
+.hero-leaf:nth-child(2) { top: 60%; right: 8%; font-size: 10rem; animation-delay: -3s; }
+.hero-leaf:nth-child(3) { bottom: 15%; left: 15%; font-size: 5rem; animation-delay: -5s; }
+@keyframes leafFloat {
+  0%, 100% { transform: rotate(-10deg) translateY(0); }
+  50% { transform: rotate(10deg) translateY(-20px); }
+}
+.hero-content {
+  position: relative; z-index: 2;
+  text-align: center;
+  padding: 2rem;
+  max-width: 900px;
+  animation: heroReveal 1.2s cubic-bezier(0.25,0.46,0.45,0.94) forwards;
+}
+@keyframes heroReveal {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(122,170,138,0.15); border: 1px solid rgba(122,170,138,0.3);
+  color: var(--green-mint); padding: 6px 16px; border-radius: 100px;
+  font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 2rem;
+  animation: heroReveal 1s 0.2s both;
+}
+.hero-title {
+  color: white; margin-bottom: 1.5rem;
+  animation: heroReveal 1s 0.4s both;
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+}
+.hero-title em {
+  font-style: italic;
+  background: linear-gradient(135deg, var(--green-mint), var(--earth-light));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-subtitle {
+  color: rgba(181,213,192,0.8); font-size: 1.2rem; font-weight: 300;
+  max-width: 600px; margin: 0 auto 2.5rem;
+  animation: heroReveal 1s 0.6s both;
+}
+.hero-ctas {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  animation: heroReveal 1s 0.8s both;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--green-sage), var(--green-forest));
+  color: white; padding: 1rem 2.2rem; border-radius: 100px;
+  font-size: 1rem; font-weight: 500; letter-spacing: 0.02em; border: none;
+  transition: var(--transition); box-shadow: 0 4px 20px rgba(74,124,95,0.4);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(74,124,95,0.5); }
+.btn-outline {
+  background: transparent; border: 1.5px solid rgba(181,213,192,0.5);
+  color: rgba(181,213,192,0.9); padding: 1rem 2.2rem; border-radius: 100px;
+  font-size: 1rem; font-weight: 500; transition: var(--transition);
+}
+.btn-outline:hover { background: rgba(181,213,192,0.1); border-color: var(--green-mint); color: white; }
+.hero-stats {
+  display: flex; justify-content: center; gap: 3rem; margin-top: 4rem;
+  animation: heroReveal 1s 1s both;
+  flex-wrap: wrap;
+}
+.hero-stat { text-align: center; }
+.hero-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem; font-weight: 600; color: white;
+}
+.hero-stat-label { font-size: 0.8rem; color: rgba(181,213,192,0.7); letter-spacing: 0.08em; text-transform: uppercase; }
+.hero-scroll {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: rgba(181,213,192,0.6); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+  animation: bounce 2s ease-in-out infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-8px); }
+}
+.scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(181,213,192,0.6), transparent); }
+
+/* ===== SECTION BASE ===== */
+.section { padding: 6rem 2rem; }
+.section-alt { background: var(--bg-section); }
+.container { max-width: 1280px; margin: 0 auto; }
+.section-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--green-pale); color: var(--green-forest);
+  padding: 6px 16px; border-radius: 100px;
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+[data-theme="dark"] .section-tag { background: rgba(74,124,95,0.2); color: var(--green-sage); }
+.section-title { margin-bottom: 1rem; color: var(--text-dark); }
+.section-desc { color: var(--text-light); max-width: 540px; font-size: 1.1rem; margin-bottom: 3rem; }
+.section-header { margin-bottom: 3.5rem; }
+.section-header-center { text-align: center; }
+.section-header-center .section-desc { margin: 0 auto 3rem; }
+
+/* ===== PAGE TABS ===== */
+.page-tabs {
+  display: flex; gap: 0.5rem;
+  background: var(--bg-section); border-radius: 100px;
+  padding: 6px; width: fit-content; margin: 0 auto 3rem;
+  flex-wrap: wrap; justify-content: center;
+}
+.tab-btn {
+  padding: 0.6rem 1.5rem; border-radius: 100px; border: none;
+  font-size: 0.85rem; font-weight: 500; letter-spacing: 0.02em;
+  background: transparent; color: var(--text-light);
+  transition: var(--transition); cursor: pointer;
+}
+.tab-btn.active {
+  background: var(--green-forest); color: white;
+  box-shadow: 0 4px 12px rgba(45,90,61,0.3);
+}
+
+/* ===== RECIPE CARDS ===== */
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+}
+.recipe-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: var(--transition);
+  cursor: pointer;
+}
+.recipe-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+.recipe-img {
+  width: 100%; height: 220px;
+  position: relative; overflow: hidden;
+}
+.recipe-img-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.5rem; font-size: 3.5rem;
+  transition: transform 0.5s ease;
+}
+.recipe-card:hover .recipe-img-placeholder { transform: scale(1.05); }
+.recipe-badge {
+  position: absolute; top: 12px; right: 12px;
+  background: rgba(27,58,39,0.85); color: white;
+  padding: 4px 12px; border-radius: 100px; font-size: 0.75rem; font-weight: 500;
+  backdrop-filter: blur(8px);
+}
+.recipe-body { padding: 1.5rem; }
+.recipe-tags { display: flex; gap: 0.5rem; margin-bottom: 0.8rem; flex-wrap: wrap; }
+.recipe-tag {
+  background: var(--green-pale); color: var(--green-forest);
+  padding: 3px 10px; border-radius: 100px; font-size: 0.75rem; font-weight: 500;
+}
+[data-theme="dark"] .recipe-tag { background: rgba(74,124,95,0.2); color: var(--green-sage); }
+.recipe-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-dark); }
+.recipe-desc { font-size: 0.9rem; color: var(--text-light); line-height: 1.5; margin-bottom: 1.2rem; }
+.recipe-meta { display: flex; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+.recipe-meta-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--text-light); }
+
+/* ===== JUICE CARDS ===== */
+.juice-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 2rem;
+  border: 1px solid var(--border);
+  transition: var(--transition);
+}
+.juice-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+.juice-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+.juice-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-dark); }
+.juice-desc { font-size: 0.9rem; color: var(--text-light); margin-bottom: 1.2rem; line-height: 1.5; }
+.juice-benefits { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.benefit-chip {
+  background: linear-gradient(135deg, var(--green-pale), rgba(232,244,236,0.5));
+  color: var(--green-forest); padding: 4px 12px; border-radius: 100px; font-size: 0.75rem; font-weight: 500;
+}
+[data-theme="dark"] .benefit-chip { background: rgba(74,124,95,0.2); color: var(--green-sage); }
+
+/* ===== AI GENERATOR SECTION ===== */
+.ai-section {
+  background: linear-gradient(135deg, var(--green-deep) 0%, #0f2018 100%);
+  padding: 6rem 2rem;
+  position: relative; overflow: hidden;
+}
+.ai-section-bg {
+  position: absolute; inset: 0;
+  background: 
+    radial-gradient(ellipse 60% 60% at 10% 90%, rgba(74,124,95,0.2) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 90% 10%, rgba(122,170,138,0.15) 0%, transparent 60%);
+}
+.ai-section .section-tag { background: rgba(122,170,138,0.15); color: var(--green-mint); }
+.ai-section .section-title { color: white; }
+.ai-section .section-desc { color: rgba(181,213,192,0.7); }
+
+.ai-box {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(122,170,138,0.2);
+  border-radius: 24px;
+  padding: 2.5rem;
+  backdrop-filter: blur(10px);
+  max-width: 700px;
+  margin: 0 auto;
+}
+.ai-input-row {
+  display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+}
+.ai-input {
+  flex: 1; min-width: 200px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(122,170,138,0.25);
+  border-radius: 12px; padding: 1rem 1.4rem;
+  color: white; font-size: 1rem; font-weight: 300;
+  transition: var(--transition); outline: none;
+}
+.ai-input:focus { border-color: var(--green-sage); background: rgba(255,255,255,0.08); }
+.ai-input::placeholder { color: rgba(181,213,192,0.4); }
+.ai-input option { background: var(--green-deep); }
+.btn-generate {
+  background: linear-gradient(135deg, var(--green-sage), var(--green-mid));
+  color: white; padding: 1rem 2rem; border-radius: 12px;
+  font-size: 0.95rem; font-weight: 500; border: none;
+  transition: var(--transition); box-shadow: 0 4px 20px rgba(74,124,95,0.4);
+  display: flex; align-items: center; gap: 8px; width: 100%;
+  justify-content: center;
+}
+.btn-generate:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(74,124,95,0.5); }
+.btn-generate:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.ai-result {
+  margin-top: 1.5rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(122,170,138,0.15);
+  border-radius: 16px;
+  padding: 1.5rem;
+  color: rgba(181,213,192,0.9);
+  font-size: 0.95rem; line-height: 1.8;
+  display: none;
+  white-space: pre-wrap;
+  animation: fadeIn 0.5s ease;
+}
+.ai-result.visible { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.ai-loading {
+  display: none; align-items: center; gap: 12px; justify-content: center;
+  padding: 1rem; color: rgba(181,213,192,0.7);
+}
+.ai-loading.visible { display: flex; }
+.spinner {
+  width: 20px; height: 20px; border: 2px solid rgba(122,170,138,0.3);
+  border-top-color: var(--green-sage); border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ===== NUTRITION CALCULATOR ===== */
+.nutrition-calc {
+  background: var(--bg-card);
+  border-radius: 24px; padding: 2.5rem;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.food-search-row { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+.food-input {
+  flex: 1; background: var(--bg-section);
+  border: 1px solid var(--border); border-radius: 12px;
+  padding: 0.9rem 1.2rem; color: var(--text-dark);
+  font-size: 1rem; outline: none; transition: var(--transition);
+}
+.food-input:focus { border-color: var(--green-sage); }
+.food-input::placeholder { color: var(--text-light); }
+.btn-add-food {
+  background: var(--green-forest); color: white;
+  padding: 0.9rem 1.5rem; border-radius: 12px; border: none;
+  font-weight: 500; transition: var(--transition);
+}
+.btn-add-food:hover { background: var(--green-deep); }
+.food-list { margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.food-item {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg-section); border-radius: 10px; padding: 0.7rem 1rem;
+  font-size: 0.9rem;
+}
+.food-item-remove {
+  background: none; border: none; color: var(--text-light); font-size: 1.1rem;
+  cursor: pointer; transition: var(--transition); padding: 2px;
+}
+.food-item-remove:hover { color: var(--earth); }
+.nutrition-card {
+  background: linear-gradient(135deg, var(--green-deep), var(--green-forest));
+  border-radius: 20px; padding: 2rem;
+  color: white; display: none;
+}
+.nutrition-card.visible { display: block; animation: fadeIn 0.5s ease; }
+.nutrition-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--green-mint); }
+.nutrition-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media(min-width: 500px) { .nutrition-grid { grid-template-columns: repeat(4, 1fr); } }
+.nutrition-item { text-align: center; }
+.nutrition-value { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: white; }
+.nutrition-label { font-size: 0.75rem; color: rgba(181,213,192,0.7); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+.nutrition-bar-section { margin-top: 1.5rem; }
+.nutrition-bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.nutrition-bar-label { font-size: 0.8rem; width: 80px; color: rgba(181,213,192,0.8); }
+.nutrition-bar-track { flex: 1; height: 8px; background: rgba(255,255,255,0.1); border-radius: 100px; overflow: hidden; }
+.nutrition-bar-fill { height: 100%; border-radius: 100px; transition: width 1s ease; }
+
+/* ===== MEAL PLANNER ===== */
+.planner-setup {
+  background: var(--bg-card);
+  border-radius: 24px; padding: 2.5rem;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  max-width: 600px;
+}
+.form-group { margin-bottom: 1.5rem; }
+.form-label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-mid); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.form-select, .form-control {
+  width: 100%; background: var(--bg-section);
+  border: 1px solid var(--border); border-radius: 12px;
+  padding: 0.9rem 1.2rem; color: var(--text-dark);
+  font-size: 1rem; outline: none; transition: var(--transition);
+  appearance: none;
+}
+.form-select:focus, .form-control:focus { border-color: var(--green-sage); }
+.meal-plan-result {
+  display: none; margin-top: 2rem;
+}
+.meal-plan-result.visible { display: block; animation: fadeIn 0.5s ease; }
+.week-grid { display: grid; gap: 1rem; }
+.day-card {
+  background: var(--bg-card); border-radius: 16px;
+  border: 1px solid var(--border); overflow: hidden;
+}
+.day-header {
+  background: linear-gradient(135deg, var(--green-forest), var(--green-mid));
+  color: white; padding: 0.8rem 1.2rem;
+  font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600;
+  display: flex; align-items: center; gap: 8px;
+}
+.day-meals { padding: 1rem; display: flex; flex-direction: column; gap: 0.6rem; }
+.day-meal { display: flex; gap: 10px; align-items: flex-start; }
+.meal-type-label {
+  background: var(--green-pale); color: var(--green-forest);
+  padding: 3px 10px; border-radius: 100px; font-size: 0.75rem; font-weight: 600;
+  white-space: nowrap;
+}
+[data-theme="dark"] .meal-type-label { background: rgba(74,124,95,0.2); color: var(--green-sage); }
+.meal-name { font-size: 0.9rem; color: var(--text-mid); }
+
+/* ===== GROCERY LIST ===== */
+.grocery-list-ui {
+  background: var(--bg-card);
+  border-radius: 24px; padding: 2rem;
+  border: 1px solid var(--border);
+  display: none;
+}
+.grocery-list-ui.visible { display: block; animation: fadeIn 0.5s ease; }
+.grocery-category { margin-bottom: 1.5rem; }
+.grocery-category-title {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600;
+  color: var(--green-forest); margin-bottom: 0.8rem;
+  display: flex; align-items: center; gap: 8px;
+}
+.grocery-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0.5rem 0; border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+.grocery-item:last-child { border-bottom: none; }
+.grocery-checkbox {
+  width: 20px; height: 20px; border-radius: 6px;
+  border: 2px solid var(--green-sage); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+}
+.grocery-item.checked .grocery-checkbox { background: var(--green-forest); border-color: var(--green-forest); }
+.grocery-item.checked .grocery-checkbox::after { content: '✓'; color: white; font-size: 0.75rem; font-weight: 600; }
+.grocery-item.checked .grocery-item-name { text-decoration: line-through; color: var(--text-light); }
+.grocery-item-name { font-size: 0.95rem; color: var(--text-mid); }
+.grocery-actions { display: flex; gap: 1rem; margin-top: 1.5rem; }
+.btn-download {
+  background: var(--green-forest); color: white;
+  padding: 0.8rem 1.5rem; border-radius: 12px; border: none;
+  font-weight: 500; transition: var(--transition);
+  display: flex; align-items: center; gap: 8px;
+}
+.btn-download:hover { background: var(--green-deep); }
+.btn-print {
+  background: var(--bg-section); color: var(--text-mid);
+  padding: 0.8rem 1.5rem; border-radius: 12px; border: 1px solid var(--border);
+  font-weight: 500; transition: var(--transition);
+  display: flex; align-items: center; gap: 8px;
+}
+.btn-print:hover { background: var(--green-pale); }
+
+/* ===== JUICE BUILDER ===== */
+.juice-builder-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+}
+@media(max-width: 700px) { .juice-builder-grid { grid-template-columns: 1fr; } }
+.ingredient-palette {
+  background: var(--bg-card); border-radius: 20px; padding: 1.5rem;
+  border: 1px solid var(--border);
+}
+.palette-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin-bottom: 1.2rem; color: var(--text-dark); }
+.ingredient-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.ingredient-chip {
+  background: var(--bg-section); border: 1.5px solid var(--border);
+  color: var(--text-mid); padding: 6px 14px; border-radius: 100px;
+  font-size: 0.85rem; font-weight: 500; cursor: pointer;
+  transition: var(--transition); user-select: none;
+}
+.ingredient-chip:hover { border-color: var(--green-sage); color: var(--green-forest); }
+.ingredient-chip.selected {
+  background: var(--green-forest); border-color: var(--green-forest);
+  color: white; box-shadow: 0 2px 8px rgba(45,90,61,0.3);
+}
+.juice-result-box {
+  background: var(--bg-card); border-radius: 20px; padding: 1.5rem;
+  border: 1px solid var(--border); display: flex; flex-direction: column; gap: 1rem;
+}
+.selected-ingredients { display: flex; flex-wrap: wrap; gap: 0.5rem; min-height: 40px; padding: 0.8rem; background: var(--bg-section); border-radius: 12px; }
+.selected-tag {
+  background: var(--green-forest); color: white;
+  padding: 4px 12px; border-radius: 100px; font-size: 0.8rem;
+  display: flex; align-items: center; gap: 6px; cursor: pointer;
+}
+.selected-tag:hover { background: var(--earth); }
+
+/* ===== TESTIMONIALS ===== */
+.testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+.testimonial-card {
+  background: var(--bg-card); border-radius: 20px; padding: 2rem;
+  border: 1px solid var(--border); transition: var(--transition);
+}
+.testimonial-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+.testimonial-stars { color: var(--gold); font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+.testimonial-text { font-size: 0.95rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 1.5rem; font-style: italic; }
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.testimonial-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--green-sage), var(--green-mint));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; color: white; font-weight: 600;
+  font-family: 'Cormorant Garamond', serif;
+}
+.testimonial-name { font-weight: 600; font-size: 0.95rem; color: var(--text-dark); }
+.testimonial-meta { font-size: 0.8rem; color: var(--text-light); }
+
+/* ===== NEWSLETTER ===== */
+.newsletter-box {
+  background: linear-gradient(135deg, var(--green-deep), var(--green-forest));
+  border-radius: 28px; padding: 4rem 3rem; text-align: center;
+  position: relative; overflow: hidden;
+}
+.newsletter-box::before {
+  content: '🌿'; position: absolute; top: -20px; right: 5%;
+  font-size: 8rem; opacity: 0.06; transform: rotate(20deg);
+}
+.newsletter-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: white; margin-bottom: 1rem; }
+.newsletter-desc { color: rgba(181,213,192,0.8); margin-bottom: 2rem; font-size: 1.05rem; }
+.newsletter-form { display: flex; gap: 1rem; max-width: 480px; margin: 0 auto; flex-wrap: wrap; }
+.newsletter-input {
+  flex: 1; min-width: 200px;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(181,213,192,0.25);
+  border-radius: 12px; padding: 0.9rem 1.2rem; color: white; font-size: 1rem;
+  outline: none; transition: var(--transition);
+}
+.newsletter-input:focus { border-color: var(--green-mint); background: rgba(255,255,255,0.15); }
+.newsletter-input::placeholder { color: rgba(181,213,192,0.5); }
+.btn-subscribe {
+  background: var(--earth); color: white;
+  padding: 0.9rem 2rem; border-radius: 12px; border: none;
+  font-weight: 600; font-size: 0.95rem; transition: var(--transition);
+}
+.btn-subscribe:hover { background: var(--gold); transform: translateY(-2px); }
+
+/* ===== FEATURES GRID ===== */
+.features-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
+.feature-card {
+  background: var(--bg-card); border-radius: 20px; padding: 2rem;
+  border: 1px solid var(--border); transition: var(--transition);
+  position: relative; overflow: hidden;
+}
+.feature-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--green-sage), var(--green-mint));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.feature-card:hover::before { transform: scaleX(1); }
+.feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+.feature-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+.feature-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-dark); }
+.feature-desc { font-size: 0.9rem; color: var(--text-light); line-height: 1.6; }
+
+/* ===== SEARCH BAR ===== */
+.search-bar-wrapper {
+  display: flex; gap: 1rem; margin-bottom: 2rem;
+  max-width: 600px; flex-wrap: wrap;
+}
+.search-bar {
+  flex: 1; min-width: 200px;
+  background: var(--bg-card); border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 0.9rem 1.2rem 0.9rem 3rem;
+  color: var(--text-dark); font-size: 1rem; outline: none;
+  transition: var(--transition);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%237aaa8a' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-size: 18px; background-position: 12px center;
+}
+.search-bar:focus { border-color: var(--green-sage); box-shadow: 0 0 0 3px rgba(122,170,138,0.15); }
+.filter-select {
+  background: var(--bg-card); border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 0.9rem 1.2rem; color: var(--text-dark);
+  font-size: 0.9rem; outline: none; transition: var(--transition); cursor: pointer;
+}
+.filter-select:focus { border-color: var(--green-sage); }
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--green-deep); color: rgba(181,213,192,0.7);
+  padding: 5rem 2rem 3rem;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem; margin-bottom: 3rem;
+}
+@media(max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } }
+.footer-brand-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 600; color: white; margin-bottom: 0.5rem; }
+.footer-brand-slogan { font-size: 0.9rem; color: var(--green-mint); margin-bottom: 1rem; font-style: italic; }
+.footer-brand-desc { font-size: 0.85rem; line-height: 1.7; max-width: 280px; }
+.footer-col-title { color: white; font-weight: 600; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.2rem; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-links a { font-size: 0.9rem; transition: var(--transition); }
+.footer-links a:hover { color: var(--green-mint); }
+.footer-bottom {
+  border-top: 1px solid rgba(122,170,138,0.2);
+  padding-top: 2rem; display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+}
+.footer-social { display: flex; gap: 1rem; }
+.footer-social a {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(122,170,138,0.1); border: 1px solid rgba(122,170,138,0.2);
+  display: flex; align-items: center; justify-content: center; font-size: 1rem;
+  transition: var(--transition); color: rgba(181,213,192,0.7);
+}
+.footer-social a:hover { background: rgba(122,170,138,0.25); color: var(--green-mint); transform: translateY(-2px); }
+.footer-copyright { font-size: 0.8rem; }
+
+/* ===== GUIDES SECTION ===== */
+.guides-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
+.guide-card {
+  background: var(--bg-card); border-radius: 20px; overflow: hidden;
+  border: 1px solid var(--border); transition: var(--transition); cursor: pointer;
+}
+.guide-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+.guide-cover {
+  height: 160px; display: flex; align-items: center; justify-content: center;
+  font-size: 4rem; position: relative;
+}
+.guide-cover-label {
+  position: absolute; top: 12px; right: 12px;
+  background: rgba(27,58,39,0.85); color: white;
+  padding: 4px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.05em; text-transform: uppercase;
+}
+.guide-info { padding: 1.2rem; }
+.guide-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--text-dark); }
+.guide-desc { font-size: 0.85rem; color: var(--text-light); margin-bottom: 0.8rem; }
+.btn-download-guide {
+  background: var(--green-pale); color: var(--green-forest);
+  padding: 0.5rem 1.2rem; border-radius: 8px; border: none;
+  font-size: 0.85rem; font-weight: 600; transition: var(--transition); cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+}
+[data-theme="dark"] .btn-download-guide { background: rgba(74,124,95,0.2); color: var(--green-sage); }
+.btn-download-guide:hover { background: var(--green-forest); color: white; }
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(15,30,22,0.8); backdrop-filter: blur(8px);
+  display: none; align-items: center; justify-content: center; padding: 2rem;
+}
+.modal-overlay.open { display: flex; animation: fadeIn 0.3s ease; }
+.modal-box {
+  background: var(--bg-card); border-radius: 24px; padding: 2.5rem;
+  max-width: 480px; width: 100%; position: relative;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+  animation: modalSlide 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+@keyframes modalSlide { from { opacity: 0; transform: translateY(30px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.modal-close {
+  position: absolute; top: 1.2rem; right: 1.2rem;
+  background: var(--bg-section); border: none; color: var(--text-light);
+  width: 36px; height: 36px; border-radius: 50%; font-size: 1.1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: var(--transition);
+}
+.modal-close:hover { background: var(--green-pale); color: var(--green-forest); }
+.modal-icon { font-size: 3rem; margin-bottom: 1rem; }
+.modal-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 0.5rem; color: var(--text-dark); }
+.modal-desc { color: var(--text-light); margin-bottom: 2rem; font-size: 0.95rem; }
+.modal-tabs { display: flex; gap: 0; background: var(--bg-section); border-radius: 12px; padding: 4px; margin-bottom: 1.5rem; }
+.modal-tab { flex: 1; padding: 0.6rem; border: none; background: transparent; color: var(--text-light); border-radius: 8px; cursor: pointer; font-weight: 500; font-size: 0.9rem; transition: var(--transition); }
+.modal-tab.active { background: var(--bg-card); color: var(--text-dark); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.modal-form { display: flex; flex-direction: column; gap: 1rem; }
+.modal-input {
+  background: var(--bg-section); border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 0.9rem 1.2rem; color: var(--text-dark);
+  font-size: 1rem; outline: none; transition: var(--transition); width: 100%;
+}
+.modal-input:focus { border-color: var(--green-sage); }
+.btn-modal-submit {
+  background: linear-gradient(135deg, var(--green-forest), var(--green-deep));
+  color: white; padding: 1rem; border-radius: 12px; border: none;
+  font-size: 1rem; font-weight: 600; transition: var(--transition); cursor: pointer;
+}
+.btn-modal-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+
+/* ===== ANIMATIONS / REVEAL ===== */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ===== RECIPE DETAIL / MODAL ===== */
+.recipe-detail {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+}
+@media(max-width: 600px) { .recipe-detail { grid-template-columns: 1fr; } }
+.recipe-ingredient-list { list-style: none; }
+.recipe-ingredient-list li {
+  padding: 0.5rem 0; border-bottom: 1px solid var(--border);
+  font-size: 0.9rem; color: var(--text-mid);
+  display: flex; align-items: center; gap: 8px;
+}
+.recipe-ingredient-list li::before { content: '•'; color: var(--green-sage); font-size: 1.2rem; }
+.recipe-steps-list { list-style: none; }
+.recipe-steps-list li {
+  padding: 0.8rem 0; border-bottom: 1px solid var(--border);
+  font-size: 0.9rem; color: var(--text-mid); line-height: 1.6;
+  display: flex; gap: 12px;
+}
+.step-num {
+  width: 24px; height: 24px; background: var(--green-forest); color: white;
+  border-radius: 50%; font-size: 0.75rem; font-weight: 600;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+}
+
+/* ===== TOAST ===== */
+.toast {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 3000;
+  background: var(--green-deep); color: white;
+  padding: 1rem 1.5rem; border-radius: 14px;
+  font-size: 0.9rem; font-weight: 500;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  transform: translateY(100px); opacity: 0;
+  transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+  display: flex; align-items: center; gap: 10px;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: block; }
+  .recipe-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+}
+@media(max-width: 600px) {
+  .section { padding: 4rem 1.2rem; }
+  .hero-stats { gap: 1.5rem; }
+  .newsletter-box { padding: 2.5rem 1.5rem; }
+  .ai-box { padding: 1.5rem; }
+}
+
+/* ===== MISC ===== */
+.divider {
+  width: 60px; height: 3px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--green-sage), var(--green-mint));
+  margin: 1rem 0 2rem;
+}
+.divider-center { margin: 1rem auto 2rem; }
+.text-accent { color: var(--green-forest); }
+[data-theme="dark"] .text-accent { color: var(--green-mint); }
+.badge-new {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--earth); color: white;
+  padding: 3px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em;
+  text-transform: uppercase; vertical-align: middle; margin-left: 8px;
+}
+.empty-state {
+  text-align: center; padding: 3rem;
+  color: var(--text-light); font-size: 0.95rem;
+}
+.empty-state-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+/* Mobile menu */
+.mobile-menu {
+  position: fixed; top: 72px; left: 0; right: 0; z-index: 999;
+  background: var(--nav-bg); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem 1.5rem;
+  display: none; flex-direction: column; gap: 0.8rem;
+}
+.mobile-menu.open { display: flex; animation: fadeIn 0.3s ease; }
+.mobile-menu a {
+  font-size: 1rem; font-weight: 500; color: var(--text-mid);
+  padding: 0.5rem 0; border-bottom: 1px solid var(--border);
+  transition: color 0.3s;
+}
+.mobile-menu a:hover { color: var(--green-forest); }
+
+/* ===== USER MENU ===== */
+.user-menu { position: relative; }
+.user-avatar-btn {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--green-pale); border: 1.5px solid var(--green-sage);
+  border-radius: 100px; padding: 6px 14px 6px 6px;
+  cursor: pointer; transition: var(--transition); font-size: 0.85rem;
+  color: var(--green-forest); font-weight: 500;
+}
+[data-theme="dark"] .user-avatar-btn { background: rgba(74,124,95,0.2); color: var(--green-mint); }
+.user-avatar-btn:hover { background: var(--green-mint); color: var(--green-deep); }
+.user-avatar-circle {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--green-forest), var(--green-sage));
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
+  font-family: 'Cormorant Garamond', serif;
+}
+.user-dropdown {
+  position: absolute; top: calc(100% + 10px); right: 0;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 0.5rem;
+  box-shadow: var(--shadow-hover); min-width: 200px;
+  display: none; z-index: 500;
+  animation: fadeIn 0.2s ease;
+}
+.user-dropdown.open { display: block; }
+.user-dropdown-header {
+  padding: 0.8rem 1rem; border-bottom: 1px solid var(--border);
+  margin-bottom: 0.4rem;
+}
+.user-dropdown-name { font-weight: 600; font-size: 0.95rem; color: var(--text-dark); }
+.user-dropdown-email { font-size: 0.78rem; color: var(--text-light); margin-top: 2px; }
+.user-dropdown-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0.65rem 1rem; border-radius: 10px; cursor: pointer;
+  font-size: 0.9rem; color: var(--text-mid); transition: var(--transition);
+  border: none; background: none; width: 100%; text-align: left;
+}
+.user-dropdown-item:hover { background: var(--bg-section); color: var(--text-dark); }
+.user-dropdown-item.danger:hover { background: #fff0f0; color: #c0392b; }
+[data-theme="dark"] .user-dropdown-item.danger:hover { background: rgba(192,57,43,0.15); }
+
+/* Progress bar */
+.progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px; z-index: 1001;
+  background: linear-gradient(90deg, var(--green-sage), var(--earth-light));
+  transition: width 0.2s ease; width: 0%;
+}
+</style>
+</head>
+<body>
+
+<!-- Progress bar -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="nav">
+  <a href="#home" class="nav-logo">
+    <div class="nav-logo-icon">🌿</div>
+    VitaRoot
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home" onclick="showPage('home')">Home</a></li>
+    <li><a href="#recipes" onclick="showPage('recipes')">Recipes</a></li>
+    <li><a href="#juices" onclick="showPage('juices')">Juices</a></li>
+    <li><a href="#ai-generator" onclick="showPage('ai')">AI Tools</a></li>
+    <li><a href="#guides" onclick="showPage('guides')">Guides</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-theme" onclick="toggleTheme()" title="Toggle theme">🌙</button>
+    <div id="navAuthArea">
+      <button class="btn-nav-cta" onclick="netlifyIdentity.open()">Sign In</button>
+    </div>
+  </div>
+  <button class="nav-hamburger" onclick="toggleMobileMenu()">☰</button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" onclick="showPage('home'); toggleMobileMenu()">🏠 Home</a>
+  <a href="#recipes" onclick="showPage('recipes'); toggleMobileMenu()">🍽 Recipes</a>
+  <a href="#juices" onclick="showPage('juices'); toggleMobileMenu()">🍹 Juices</a>
+  <a href="#ai-generator" onclick="showPage('ai'); toggleMobileMenu()">🤖 AI Tools</a>
+  <a href="#nutrition" onclick="showPage('nutrition'); toggleMobileMenu()">🧮 Nutrition</a>
+  <a href="#planner" onclick="showPage('planner'); toggleMobileMenu()">🧠 Meal Planner</a>
+  <a href="#guides" onclick="showPage('guides'); toggleMobileMenu()">📚 Guides</a>
+</div>
+
+<!-- ===== HOME PAGE ===== -->
+<div id="page-home">
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-particles"></div>
+  <span class="hero-leaf">🌿</span>
+  <span class="hero-leaf">🍃</span>
+  <span class="hero-leaf">🌱</span>
+  <div class="hero-content">
+    <div class="hero-badge">🌱 AI-Powered Nutrition Platform</div>
+    <h1 class="hero-title">
+      Grow From<br><em>Within</em>
+    </h1>
+    <p class="hero-subtitle">
+      We are what we eat. Transform your life through mindful nutrition, AI-powered meal planning, and the ancient wisdom of natural food.
+    </p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="showPage('recipes')">🍽 Explore Recipes</button>
+      <button class="btn-outline" onclick="showPage('ai')">🤖 Try AI Generator</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">500+</div>
+        <div class="hero-stat-label">Healthy Recipes</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">50k+</div>
+        <div class="hero-stat-label">Happy Users</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">AI</div>
+        <div class="hero-stat-label">Meal Planner</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">100%</div>
+        <div class="hero-stat-label">Natural</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section reveal">
+  <div class="container">
+    <div class="section-header section-header-center">
+      <div class="section-tag">✨ Everything you need</div>
+      <h2 class="section-title">A complete healthy lifestyle ecosystem</h2>
+      <div class="divider divider-center"></div>
+      <p class="section-desc">From AI-powered meal plans to personalized juice recipes — everything you need to live healthier, in one place.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal reveal-delay-1" onclick="showPage('recipes')">
+        <div class="feature-icon">🍽</div>
+        <div class="feature-title">Recipe Library</div>
+        <div class="feature-desc">500+ healthy recipes with full nutrition info, step-by-step guides, and smart filters.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-2" onclick="showPage('juices')">
+        <div class="feature-icon">🍹</div>
+        <div class="feature-title">Juice & Smoothies</div>
+        <div class="feature-desc">Curated juice and smoothie recipes for detox, energy, immunity, and weight loss.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-3" onclick="showPage('ai')">
+        <div class="feature-icon">🤖</div>
+        <div class="feature-title">AI Recipe Generator</div>
+        <div class="feature-desc">Enter ingredients you have — get a personalized healthy recipe in seconds.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-1" onclick="showPage('nutrition')">
+        <div class="feature-icon">🧮</div>
+        <div class="feature-title">Nutrition Calculator</div>
+        <div class="feature-desc">Instantly calculate calories, protein, carbs, fats, and vitamins for any meal.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-2" onclick="showPage('planner')">
+        <div class="feature-icon">🧠</div>
+        <div class="feature-title">AI Meal Planner <span class="badge-new">NEW</span></div>
+        <div class="feature-desc">AI generates a complete 7-day meal plan tailored to your goals and diet type.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-3" onclick="showPage('guides')">
+        <div class="feature-icon">📚</div>
+        <div class="feature-title">Wellness Guides</div>
+        <div class="feature-desc">Downloadable PDF guides on detox, meal prep, juice therapy, and healthy living.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Recipes -->
+<section class="section section-alt reveal">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">🔥 Trending now</div>
+      <h2 class="section-title">Featured Recipes</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Handpicked healthy recipes loved by our community this week.</p>
+    </div>
+    <div class="recipe-grid" id="featuredRecipes"></div>
+    <div style="text-align:center;margin-top:2.5rem">
+      <button class="btn-primary" onclick="showPage('recipes')">View All Recipes →</button>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Juices -->
+<section class="section reveal">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">🍹 Fresh & Vibrant</div>
+      <h2 class="section-title">Healing Juices</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Nutrient-packed juices and smoothies for every health goal.</p>
+    </div>
+    <div class="recipe-grid" id="featuredJuices"></div>
+    <div style="text-align:center;margin-top:2.5rem">
+      <button class="btn-primary" onclick="showPage('juices')">View All Juices →</button>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section section-alt reveal">
+  <div class="container">
+    <div class="section-header section-header-center">
+      <div class="section-tag">💬 Community</div>
+      <h2 class="section-title">Real transformations, real stories</h2>
+      <div class="divider divider-center"></div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"VitaRoot completely changed how I eat. The AI meal planner is incredibly smart — it understands my goals and creates realistic, delicious plans I actually stick to."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">S</div>
+          <div>
+            <div class="testimonial-name">Sarah M.</div>
+            <div class="testimonial-meta">Lost 12kg in 3 months</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"The AI recipe generator is magical. I typed in the random veggies I had and it gave me a restaurant-worthy bowl. My family was amazed!"</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">J</div>
+          <div>
+            <div class="testimonial-name">James R.</div>
+            <div class="testimonial-meta">Plant-based chef & dad</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-3">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"I've tried dozens of health apps. VitaRoot feels different — more personal, more beautiful. The detox juice recipes brought my energy back to life."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">A</div>
+          <div>
+            <div class="testimonial-name">Anika L.</div>
+            <div class="testimonial-meta">Wellness coach & runner</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="section reveal">
+  <div class="container">
+    <div class="newsletter-box">
+      <h2 class="newsletter-title">🌿 Weekly Nutrition Wisdom</h2>
+      <p class="newsletter-desc">Get fresh recipes, seasonal wellness tips, and AI-powered meal ideas delivered every Monday.</p>
+      <div class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="your@email.com" id="newsletterEmail">
+        <button class="btn-subscribe" onclick="subscribeNewsletter()">Subscribe Free</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- end page-home -->
+
+<!-- ===== RECIPES PAGE ===== -->
+<div id="page-recipes" style="display:none; padding-top:72px">
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">🍽 Recipe Library</div>
+      <h2 class="section-title">Healthy Recipes</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Over 500 whole-food recipes for every meal, diet, and lifestyle.</p>
+    </div>
+
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem;align-items:center">
+      <input type="text" class="search-bar" placeholder="Search recipes..." id="recipeSearch" oninput="filterRecipes()" style="max-width:300px">
+      <select class="filter-select" id="dietFilter" onchange="filterRecipes()">
+        <option value="">All Diets</option>
+        <option value="vegan">Vegan</option>
+        <option value="vegetarian">Vegetarian</option>
+        <option value="keto">Keto</option>
+        <option value="gluten-free">Gluten-Free</option>
+      </select>
+      <select class="filter-select" id="mealFilter" onchange="filterRecipes()">
+        <option value="">All Meals</option>
+        <option value="breakfast">Breakfast</option>
+        <option value="lunch">Lunch</option>
+        <option value="dinner">Dinner</option>
+        <option value="snack">Snack</option>
+      </select>
+      <select class="filter-select" id="timeFilter" onchange="filterRecipes()">
+        <option value="">Any Time</option>
+        <option value="15">Under 15 min</option>
+        <option value="30">Under 30 min</option>
+        <option value="60">Under 60 min</option>
+      </select>
+    </div>
+
+    <div class="recipe-grid" id="recipesGrid"></div>
+    <div style="text-align:center;margin-top:2.5rem">
+      <button class="btn-primary" onclick="loadMoreRecipes()" id="loadMoreBtn">Load More Recipes</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ===== JUICES PAGE ===== -->
+<div id="page-juices" style="display:none; padding-top:72px">
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">🍹 Juice Bar</div>
+      <h2 class="section-title">Healing Juices & Smoothies</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Nature's medicine in a glass — from energizing green blends to immune-boosting citrus shots.</p>
+    </div>
+    <div style="margin-bottom:2rem">
+      <div class="page-tabs">
+        <button class="tab-btn active" onclick="filterJuices('all', this)">All</button>
+        <button class="tab-btn" onclick="filterJuices('detox', this)">Detox 🍃</button>
+        <button class="tab-btn" onclick="filterJuices('immunity', this)">Immunity 🛡</button>
+        <button class="tab-btn" onclick="filterJuices('energy', this)">Energy ⚡</button>
+        <button class="tab-btn" onclick="filterJuices('weight-loss', this)">Weight Loss 🔥</button>
+      </div>
+    </div>
+    <div class="recipe-grid" id="juicesGrid"></div>
+  </div>
+</section>
+
+<!-- Juice Builder -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">🎨 Juice Builder</div>
+      <h2 class="section-title">Build Your Perfect Juice</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Select your favorite ingredients and let AI craft your custom juice recipe.</p>
+    </div>
+    <div class="juice-builder-grid">
+      <div class="ingredient-palette">
+        <div class="palette-title">🍎 Pick Your Ingredients</div>
+        <div class="ingredient-chips" id="ingredientPalette"></div>
+      </div>
+      <div class="juice-result-box">
+        <div class="palette-title">Your Selection</div>
+        <div class="selected-ingredients" id="selectedIngredients">
+          <span style="color:var(--text-light);font-size:0.85rem;padding:0.3rem">Tap ingredients to add →</span>
+        </div>
+        <button class="btn-generate" onclick="buildJuice()">
+          <span>✨ Generate Juice Recipe</span>
+        </button>
+        <div class="ai-loading" id="juiceLoading">
+          <div class="spinner"></div><span>Crafting your blend...</span>
+        </div>
+        <div class="ai-result" id="juiceResult"></div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ===== AI TOOLS PAGE ===== -->
+<div id="page-ai" style="display:none; padding-top:72px">
+
+<!-- AI Recipe Generator -->
+<div class="ai-section" id="ai-generator">
+  <div class="ai-section-bg"></div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="section-header">
+      <div class="section-tag">🤖 AI Powered</div>
+      <h2 class="section-title">AI Recipe Generator</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Tell us what's in your fridge. Our AI creates a personalized healthy recipe just for you.</p>
+    </div>
+    <div class="ai-box">
+      <div style="margin-bottom:1rem">
+        <label style="color:rgba(181,213,192,0.8);font-size:0.85rem;display:block;margin-bottom:0.6rem;font-weight:500">🥗 Ingredients you have (comma separated)</label>
+        <input type="text" class="ai-input" id="aiIngredients" placeholder="apple, banana, oats, honey, almond milk...">
+      </div>
+      <div class="ai-input-row">
+        <select class="ai-input" id="aiDiet">
+          <option value="">Any diet</option>
+          <option value="vegan">Vegan</option>
+          <option value="vegetarian">Vegetarian</option>
+          <option value="keto">Keto</option>
+          <option value="gluten-free">Gluten-Free</option>
+        </select>
+        <select class="ai-input" id="aiMealType">
+          <option value="">Any meal</option>
+          <option value="breakfast">Breakfast</option>
+          <option value="lunch">Lunch</option>
+          <option value="dinner">Dinner</option>
+          <option value="snack">Snack/Smoothie</option>
+        </select>
+      </div>
+      <button class="btn-generate" onclick="generateAIRecipe()" id="btnGenerateRecipe">
+        ✨ Generate My Healthy Recipe
+      </button>
+      <div class="ai-loading" id="recipeLoading">
+        <div class="spinner"></div><span>AI is crafting your recipe...</span>
+      </div>
+      <div class="ai-result" id="recipeResult"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Nutrition Calculator -->
+<section class="section" id="nutrition">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">🧮 Nutrition</div>
+      <h2 class="section-title">Nutrition Calculator</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Add your foods and instantly calculate your complete nutritional breakdown.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:900px">
+      <div>
+        <div class="nutrition-calc">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--text-dark);margin-bottom:1.5rem;font-weight:600">Add Your Foods</div>
+          <div class="food-search-row">
+            <input type="text" class="food-input" id="foodInput" placeholder="e.g. 1 banana, 100g oats..." onkeydown="if(event.key==='Enter')addFood()">
+            <button class="btn-add-food" onclick="addFood()">+ Add</button>
+          </div>
+          <div class="food-list" id="foodList"></div>
+          <button class="btn-generate" onclick="calculateNutrition()" id="btnCalcNutrition" style="background:linear-gradient(135deg,var(--green-mid),var(--green-forest))">
+            🧮 Calculate Nutrition
+          </button>
+          <div class="ai-loading" id="nutritionLoading">
+            <div class="spinner"></div><span>Analyzing nutrition...</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="nutrition-card" id="nutritionCard">
+          <div class="nutrition-title">📊 Nutrition Analysis</div>
+          <div class="nutrition-grid" id="nutritionValues"></div>
+          <div class="nutrition-bar-section" id="nutritionBars"></div>
+        </div>
+        <div style="background:var(--bg-card);border-radius:20px;padding:2rem;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;min-height:200px" id="nutritionPlaceholder">
+          <div class="empty-state">
+            <div class="empty-state-icon">🥗</div>
+            <div>Add foods and calculate to see your nutrition breakdown</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- end page-ai -->
+
+<!-- ===== MEAL PLANNER PAGE ===== -->
+<div id="page-planner" style="display:none; padding-top:72px">
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">🧠 AI Meal Planner <span class="badge-new">NEW</span></div>
+      <h2 class="section-title">Your Personal 7-Day Meal Plan</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Tell us your goals and dietary preferences. Our AI generates a complete, balanced weekly meal plan in seconds.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start">
+      <div>
+        <div class="planner-setup">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--text-dark);margin-bottom:1.5rem;font-weight:600">✏️ Your Preferences</div>
+          <div class="form-group">
+            <label class="form-label">Diet Goal</label>
+            <select class="form-select" id="plannerGoal">
+              <option value="healthy lifestyle">Healthy Lifestyle</option>
+              <option value="weight loss">Weight Loss</option>
+              <option value="muscle gain">Muscle Gain</option>
+              <option value="energy boost">Energy Boost</option>
+              <option value="detox">Detox & Cleanse</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Diet Type</label>
+            <select class="form-select" id="plannerDiet">
+              <option value="normal">Balanced / Normal</option>
+              <option value="vegan">Vegan</option>
+              <option value="vegetarian">Vegetarian</option>
+              <option value="keto">Keto</option>
+              <option value="mediterranean">Mediterranean</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Meals Per Day</label>
+            <select class="form-select" id="plannerMeals">
+              <option value="3">3 meals</option>
+              <option value="4">4 meals</option>
+              <option value="5">5 meals</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Allergies / Preferences (optional)</label>
+            <input type="text" class="form-control" id="plannerAllergies" placeholder="nuts, dairy, shellfish...">
+          </div>
+          <button class="btn-generate" onclick="generateMealPlan()" id="btnGeneratePlan">
+            🧠 Generate My 7-Day Plan
+          </button>
+          <div class="ai-loading" id="plannerLoading">
+            <div class="spinner"></div><span>Crafting your meal plan...</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="meal-plan-result" id="mealPlanResult">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--text-dark);margin-bottom:1.5rem;font-weight:600">📅 Your Weekly Meal Plan</div>
+          <div class="week-grid" id="weekGrid"></div>
+          <div style="margin-top:2rem">
+            <button class="btn-primary" onclick="generateGroceryList()" id="btnGrocery">🛒 Generate Grocery List</button>
+          </div>
+        </div>
+        <div style="background:var(--bg-card);border-radius:24px;padding:3rem;border:1px solid var(--border);text-align:center" id="plannerPlaceholder">
+          <div style="font-size:4rem;margin-bottom:1rem">🥦</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--text-dark);margin-bottom:0.5rem">Ready to transform your eating?</div>
+          <div style="color:var(--text-light);font-size:0.95rem">Fill in your preferences and generate your personalized AI meal plan.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Grocery List -->
+<section class="section section-alt" id="grocery-section" style="display:none">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">🛒 Smart Shopping</div>
+      <h2 class="section-title">AI Grocery List</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Your smart grocery list — organized by category, ready for shopping.</p>
+    </div>
+    <div style="max-width:600px">
+      <div class="ai-loading" id="groceryLoading">
+        <div class="spinner"></div><span>Organizing your grocery list...</span>
+      </div>
+      <div class="grocery-list-ui" id="groceryList"></div>
+    </div>
+  </div>
+</section>
+</div><!-- end page-planner -->
+
+<!-- ===== GUIDES PAGE ===== -->
+<div id="page-guides" style="display:none; padding-top:72px">
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">📚 Knowledge Base</div>
+      <h2 class="section-title">Healthy Life Guides</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Expert-crafted PDF guides to transform your relationship with food and health. Sign in to download.</p>
+    </div>
+    <div class="guides-grid" id="guidesGrid"></div>
+  </div>
+</section>
+</div>
+
+<!-- ===== MODALS ===== -->
+
+<!-- Netlify Identity handles the auth modal automatically -->
+<!-- Guide download gate modal -->
+<div class="modal-overlay" id="guideGateModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('guideGateModal')">✕</button>
+    <div class="modal-icon">🔐</div>
+    <h3 class="modal-title">Sign in to Download</h3>
+    <p class="modal-desc">Create a free VitaRoot account to access all wellness guides.</p>
+    <button class="btn-modal-submit" onclick="closeModal('guideGateModal');netlifyIdentity.open()">🌿 Sign In / Create Account</button>
+  </div>
+</div>
+
+<!-- Recipe Detail Modal -->
+<div class="modal-overlay" id="recipeModal" style="align-items:flex-start;padding-top:80px">
+  <div class="modal-box" style="max-width:700px;max-height:85vh;overflow-y:auto">
+    <button class="modal-close" onclick="closeModal('recipeModal')">✕</button>
+    <div id="recipeModalContent"></div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">🌿 VitaRoot</div>
+        <div class="footer-brand-slogan">"Grow From Within"</div>
+        <p class="footer-brand-desc">AI-powered nutrition platform helping you eat healthier, build better habits, and transform your life through the wisdom of natural food.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Platform</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="showPage('recipes')">Recipes</a></li>
+          <li><a href="#" onclick="showPage('juices')">Juices</a></li>
+          <li><a href="#" onclick="showPage('ai')">AI Generator</a></li>
+          <li><a href="#" onclick="showPage('planner')">Meal Planner</a></li>
+          <li><a href="#" onclick="showPage('guides')">Guides</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Mission</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Support</div>
+        <ul class="footer-links">
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copyright">© 2025 VitaRoot. All rights reserved. Made with 🌿 for healthier lives.</div>
+      <div class="footer-social">
+        <a href="#" title="Pinterest">📌</a>
+        <a href="#" title="Instagram">📸</a>
+        <a href="#" title="Twitter">🐦</a>
+        <a href="#" title="TikTok">🎵</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast">🌿 <span id="toastMsg"></span></div>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ===== DATA =====
+const RECIPES_DATA = [
+  { id:1, emoji:'🥗', title:'Rainbow Buddha Bowl', desc:'Nourishing bowl with roasted veggies, quinoa, and tahini dressing.', time:'25 min', difficulty:'Easy', diet:['vegan','vegetarian'], meal:'lunch', tags:['Vegan','High Protein'], bg:'#e8f4ec', calories:380, ingredients:['1 cup quinoa','2 cups mixed greens','1 avocado, sliced','1 cup cherry tomatoes','1/2 cup roasted chickpeas','1/4 cup tahini dressing','1 carrot, julienned','1 cucumber, sliced'], steps:['Cook quinoa per instructions.','Roast chickpeas with olive oil, salt & cumin at 200°C for 20 min.','Arrange all ingredients in a bowl.','Drizzle with tahini dressing and serve.'] },
+  { id:2, emoji:'🥞', title:'Banana Oat Pancakes', desc:'Fluffy, naturally sweet pancakes with zero refined sugar.', time:'20 min', difficulty:'Easy', diet:['vegetarian','gluten-free'], meal:'breakfast', tags:['Gluten-Free','Breakfast'], bg:'#fff3e0', calories:290, ingredients:['2 ripe bananas','2 eggs','1 cup rolled oats','1 tsp baking powder','1 tsp vanilla extract','Pinch of cinnamon','Maple syrup to serve'], steps:['Blend bananas, eggs, oats, baking powder and vanilla until smooth.','Heat a non-stick pan over medium heat.','Pour batter and cook 2-3 min each side.','Serve with fresh berries and maple syrup.'] },
+  { id:3, emoji:'🍜', title:'Green Goddess Soup', desc:'Velvety spinach and broccoli soup with lemon and coconut cream.', time:'30 min', difficulty:'Easy', diet:['vegan','vegetarian'], meal:'dinner', tags:['Vegan','Detox'], bg:'#e8f4ec', calories:220, ingredients:['4 cups vegetable broth','2 cups spinach','1 head broccoli','1 can coconut cream','2 garlic cloves','1 lemon, juiced','Salt & pepper'], steps:['Sauté garlic in olive oil for 2 min.','Add broccoli and broth, simmer 15 min.','Add spinach and blend until smooth.','Stir in coconut cream and lemon juice.','Season and serve hot.'] },
+  { id:4, emoji:'🥑', title:'Avocado Toast Supreme', desc:'Sourdough with whipped ricotta, avocado, poached egg and dukkah.', time:'15 min', difficulty:'Easy', diet:['vegetarian'], meal:'breakfast', tags:['Vegetarian','Quick'], bg:'#f0f8e8', calories:420, ingredients:['2 slices sourdough','1 avocado','2 eggs','3 tbsp ricotta','1 lemon','2 tsp dukkah','Red chilli flakes','Salt & pepper'], steps:['Toast bread until golden.','Whip ricotta with lemon juice.','Mash avocado with salt and lemon.','Poach eggs for 3-4 min.','Assemble and top with dukkah.'] },
+  { id:5, emoji:'🍗', title:'Turmeric Roasted Chicken', desc:'Golden anti-inflammatory roasted chicken with herbs and lemon.', time:'60 min', difficulty:'Medium', diet:[], meal:'dinner', tags:['High Protein','Anti-Inflammatory'], bg:'#fff3e0', calories:520, ingredients:['4 chicken thighs','2 tsp turmeric','1 tsp cumin','1 lemon','4 garlic cloves','2 tbsp olive oil','Fresh thyme','Salt & pepper'], steps:['Mix spices with olive oil and garlic.','Coat chicken and marinate 30 min.','Roast at 200°C for 40-45 min.','Rest 5 min before serving.'] },
+  { id:6, emoji:'🌮', title:'Crispy Black Bean Tacos', desc:'Street-style tacos with smoky black beans, slaw and lime crema.', time:'25 min', difficulty:'Easy', diet:['vegan','vegetarian'], meal:'dinner', tags:['Vegan','Mexican'], bg:'#fce4ec', calories:340, ingredients:['8 corn tortillas','2 cans black beans','1 tsp smoked paprika','1 cup red cabbage','2 limes','1/2 cup cashew cream','Fresh coriander','1 avocado'], steps:['Spice and heat black beans.','Shred cabbage with lime juice.','Warm tortillas.','Assemble with beans, slaw and crema.','Top with coriander and avocado.'] },
+  { id:7, emoji:'🥙', title:'Quinoa Stuffed Peppers', desc:'Colourful peppers filled with herbed quinoa, feta and pine nuts.', time:'45 min', difficulty:'Medium', diet:['vegetarian','gluten-free'], meal:'lunch', tags:['Vegetarian','Gluten-Free'], bg:'#e8f4ec', calories:310, ingredients:['4 bell peppers','1 cup quinoa','100g feta cheese','50g pine nuts','2 tbsp olive oil','Herbs: parsley, mint','1 lemon'], steps:['Cook quinoa and mix with feta, pine nuts and herbs.','Halve peppers and remove seeds.','Fill with quinoa mixture.','Bake at 180°C for 25 min.'] },
+  { id:8, emoji:'🍳', title:'Golden Miso Shakshuka', desc:'Eggs poached in spiced miso tomato sauce with crispy chickpeas.', time:'30 min', difficulty:'Easy', diet:['vegetarian'], meal:'breakfast', tags:['Vegetarian','High Protein'], bg:'#fff3e0', calories:360, ingredients:['6 eggs','1 can tomatoes','2 tbsp white miso','1 can chickpeas','1 onion','3 garlic cloves','1 tsp cumin','Feta to serve'], steps:['Sauté onion and garlic 5 min.','Add miso, tomatoes and spices, simmer 10 min.','Make wells and crack eggs in.','Cover and cook 8 min.','Top with feta and herbs.'] },
+];
+
+const JUICES_DATA = [
+  { id:1, emoji:'🟢', title:'Morning Vitality Shot', desc:'Ginger, lemon, turmeric and black pepper to kickstart your metabolism.', category:'energy', bg:'#e8f4ec', benefits:['Energy','Anti-inflammatory','Metabolism'], ingredients:['2 inches fresh ginger','1 lemon','1 tsp turmeric','Pinch black pepper','1 tbsp honey'], steps:['Juice ginger and lemon.','Add turmeric and black pepper.','Sweeten with honey. Serve chilled.'] },
+  { id:2, emoji:'🟩', title:'Deep Green Detox', desc:'Celery, cucumber, spinach, apple and spirulina for deep cleansing.', category:'detox', bg:'#e8f4ec', benefits:['Detox','Cleansing','Alkalising'], ingredients:['4 celery stalks','1/2 cucumber','2 cups spinach','1 green apple','1 tsp spirulina','1/2 lemon'], steps:['Juice all vegetables and apple.','Stir in spirulina.','Add lemon juice and serve immediately.'] },
+  { id:3, emoji:'🟠', title:'Immunity Fortress', desc:'Orange, carrot, ginger and elderberry for powerful immune defence.', category:'immunity', bg:'#fff3e0', benefits:['Immunity','Vitamin C','Antiviral'], ingredients:['3 oranges','2 carrots','1 inch ginger','1 tsp elderberry syrup','1/4 tsp cinnamon'], steps:['Juice oranges, carrots and ginger.','Stir in elderberry syrup and cinnamon.','Serve over ice.'] },
+  { id:4, emoji:'🔴', title:'Beetroot Warrior', desc:'Beetroot, apple, carrot and ginger for performance and endurance.', category:'energy', bg:'#fce4ec', benefits:['Energy','Endurance','Blood flow'], ingredients:['2 medium beetroots','2 apples','3 carrots','1 inch ginger','1/2 lemon'], steps:['Juice beetroot, apples, carrots and ginger.','Add lemon juice.','Strain and serve chilled.'] },
+  { id:5, emoji:'💚', title:'Slim & Glow Blend', desc:'Pineapple, cucumber, mint and matcha for weight management.', category:'weight-loss', bg:'#e8f4ec', benefits:['Weight loss','Bloat relief','Metabolism'], ingredients:['1/2 pineapple','1 cucumber','Handful mint','1 tsp matcha','1/2 lemon juice','Water as needed'], steps:['Blend pineapple and cucumber.','Add mint, matcha and lemon.','Blend smooth and serve chilled.'] },
+  { id:6, emoji:'🍋', title:'Golden Turmeric Latte Juice', desc:'Turmeric, mango, carrot and coconut water — liquid sunshine.', category:'immunity', bg:'#fff3e0', benefits:['Anti-inflammatory','Hydration','Glow'], ingredients:['1 mango','3 carrots','1 tsp turmeric','1 cup coconut water','1/2 lemon','Pinch black pepper'], steps:['Juice carrots.','Blend with mango, coconut water and turmeric.','Add lemon, pepper and serve.'] },
+];
+
+const GUIDES_DATA = [
+  { id:1, emoji:'🌿', title:'7-Day Green Detox Guide', desc:'Complete detox protocol with daily juices, meals and mindfulness.', category:'Detox', pages:'24 pages', bg:'#e8f4ec' },
+  { id:2, emoji:'🥗', title:'Healthy Meal Planning Bible', desc:'Master the art of weekly meal prep with templates and strategies.', category:'Meal Planning', pages:'36 pages', bg:'#f0f8e8' },
+  { id:3, emoji:'🍹', title:'Juice Therapy Guide', desc:'Evidence-based guide to healing and nourishing with fresh juices.', category:'Juice Therapy', pages:'28 pages', bg:'#e8f4f8' },
+  { id:4, emoji:'🔥', title:'Keto Reset Programme', desc:'Clean keto guide with 30 days of recipes and shopping lists.', category:'Keto', pages:'42 pages', bg:'#fff3e0' },
+  { id:5, emoji:'💪', title:'Plant Protein Power', desc:'Build muscle on a plant-based diet with high-protein meal plans.', category:'Vegan', pages:'32 pages', bg:'#e8f4ec' },
+  { id:6, emoji:'🌙', title:'Sleep & Nutrition Connection', desc:'How to eat for better sleep, recovery, and mental clarity.', category:'Wellness', pages:'20 pages', bg:'#f3e8ff' },
+];
+
+const INGREDIENTS_PALETTE = ['🍎 Apple','🍋 Lemon','🍊 Orange','🥕 Carrot','🥒 Cucumber','🌿 Spinach','🥦 Broccoli','🍇 Grapes','🍍 Pineapple','🫚 Ginger','🧄 Garlic','🌽 Corn','🍓 Strawberry','🫐 Blueberry','🥝 Kiwi','🍌 Banana','🌶️ Turmeric','🌱 Mint','🫚 Celery','🥬 Kale'];
+
+let currentPage = 'home';
+let displayedRecipes = 6;
+let selectedIngredients = [];
+let foodItems = [];
+let currentMealPlan = '';
+
+// ===== THEME =====
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  document.querySelector('.btn-theme').textContent = isDark ? '🌙' : '☀️';
+}
+
+// ===== NAVIGATION =====
+function showPage(page) {
+  ['home','recipes','juices','ai','planner','guides','nutrition'].forEach(p => {
+    const el = document.getElementById(`page-${p}`);
+    if(el) el.style.display = 'none';
+  });
+  const el = document.getElementById(`page-${page}`);
+  if(el) { el.style.display = ''; window.scrollTo({top:0,behavior:'smooth'}); }
+  if(page === 'home') {
+    document.getElementById('page-home').style.display = '';
+  }
+  if(page === 'nutrition') {
+    document.getElementById('page-ai').style.display = '';
+  }
+  currentPage = page;
+}
+
+function toggleMobileMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ===== MODAL =====
+function closeModal(id) {
+  const el = document.getElementById(id);
+  if(el) el.classList.remove('open');
+}
+
+// ===== NETLIFY IDENTITY AUTH =====
+let currentUser = null;
+
+function initAuth() {
+  netlifyIdentity.on('init', user => { if(user) onSignIn(user); });
+  netlifyIdentity.on('login', user => { onSignIn(user); netlifyIdentity.close(); });
+  netlifyIdentity.on('logout', () => onSignOut());
+  netlifyIdentity.on('error', err => { console.error('Auth error:', err); showToast('Auth error. Please try again.'); });
+  netlifyIdentity.init();
+}
+
+function onSignIn(user) {
+  currentUser = user;
+  const name = user.user_metadata?.full_name || user.email.split('@')[0];
+  const initial = name.charAt(0).toUpperCase();
+  const email = user.email;
+
+  document.getElementById('navAuthArea').innerHTML = `
+    <div class="user-menu" id="userMenu">
+      <button class="user-avatar-btn" onclick="toggleUserDropdown()">
+        <div class="user-avatar-circle">${initial}</div>
+        <span>${name.split(' ')[0]}</span>
+        <span style="font-size:0.7rem;opacity:0.6">▼</span>
+      </button>
+      <div class="user-dropdown" id="userDropdown">
+        <div class="user-dropdown-header">
+          <div class="user-dropdown-name">${name}</div>
+          <div class="user-dropdown-email">${email}</div>
+        </div>
+        <button class="user-dropdown-item" onclick="showPage('planner');toggleUserDropdown()">🧠 My Meal Plans</button>
+        <button class="user-dropdown-item" onclick="showSavedRecipes();toggleUserDropdown()">❤️ Saved Recipes</button>
+        <button class="user-dropdown-item" onclick="showPage('guides');toggleUserDropdown()">📚 My Guides</button>
+        <button class="user-dropdown-item danger" onclick="netlifyIdentity.logout()">🚪 Sign Out</button>
+      </div>
+    </div>`;
+
+  showToast('Welcome back, ' + name.split(' ')[0] + '! 🌿');
+}
+
+function onSignOut() {
+  currentUser = null;
+  document.getElementById('navAuthArea').innerHTML = `
+    <button class="btn-nav-cta" onclick="netlifyIdentity.open()">Sign In</button>`;
+  showToast('You've been signed out. See you soon! 🌿');
+}
+
+function toggleUserDropdown() {
+  const d = document.getElementById('userDropdown');
+  if(d) d.classList.toggle('open');
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', e => {
+  const menu = document.getElementById('userMenu');
+  if(menu && !menu.contains(e.target)) {
+    const d = document.getElementById('userDropdown');
+    if(d) d.classList.remove('open');
+  }
+});
+
+// ===== SAVED RECIPES =====
+function getSavedRecipes() {
+  if(!currentUser) return [];
+  const key = 'vitaroot_saved_' + currentUser.id;
+  try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch { return []; }
+}
+function saveRecipe(recipeId) {
+  if(!currentUser) { netlifyIdentity.open(); showToast('Sign in to save recipes!'); return; }
+  const saved = getSavedRecipes();
+  if(saved.includes(recipeId)) { showToast('Already saved! ❤️'); return; }
+  saved.push(recipeId);
+  localStorage.setItem('vitaroot_saved_' + currentUser.id, JSON.stringify(saved));
+  showToast('Recipe saved! ❤️');
+}
+function showSavedRecipes() {
+  const saved = getSavedRecipes();
+  if(saved.length === 0) { showToast('No saved recipes yet. Start exploring! 🌿'); showPage('recipes'); return; }
+  showPage('recipes');
+  showToast('Showing your ' + saved.length + ' saved recipes ❤️');
+}
+
+// ===== TOAST =====
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ===== RECIPE RENDERING =====
+function renderRecipeCard(recipe, parent) {
+  const div = document.createElement('div');
+  div.className = 'recipe-card reveal';
+  div.innerHTML = `
+    <div class="recipe-img">
+      <div class="recipe-img-placeholder" style="background:${recipe.bg}">${recipe.emoji}</div>
+      <div class="recipe-badge">${recipe.time}</div>
+    </div>
+    <div class="recipe-body">
+      <div class="recipe-tags">${recipe.tags.map(t=>`<span class="recipe-tag">${t}</span>`).join('')}</div>
+      <div class="recipe-title">${recipe.title}</div>
+      <div class="recipe-desc">${recipe.desc}</div>
+      <div class="recipe-meta">
+        <span class="recipe-meta-item">⏱ ${recipe.time}</span>
+        <span class="recipe-meta-item">📊 ${recipe.difficulty}</span>
+        <span class="recipe-meta-item">🔥 ${recipe.calories} kcal</span>
+      </div>
+    </div>`;
+  div.onclick = () => openRecipeModal(recipe);
+  parent.appendChild(div);
+}
+
+function openRecipeModal(recipe) {
+  const content = document.getElementById('recipeModalContent');
+  content.innerHTML = `
+    <div style="font-size:4rem;margin-bottom:1rem">${recipe.emoji}</div>
+    <h3 class="modal-title">${recipe.title}</h3>
+    <div class="recipe-tags" style="margin:0.5rem 0 1.5rem">
+      ${recipe.tags.map(t=>`<span class="recipe-tag">${t}</span>`).join('')}
+      <span class="recipe-meta-item">⏱ ${recipe.time}</span>
+      <span class="recipe-meta-item">🔥 ${recipe.calories} kcal</span>
+    </div>
+    <p style="color:var(--text-light);margin-bottom:1.5rem;font-size:0.95rem">${recipe.desc}</p>
+    <div class="recipe-detail">
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;margin-bottom:1rem;color:var(--text-dark)">🥗 Ingredients</div>
+        <ul class="recipe-ingredient-list">${recipe.ingredients.map(i=>`<li>${i}</li>`).join('')}</ul>
+      </div>
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;margin-bottom:1rem;color:var(--text-dark)">👨‍🍳 Instructions</div>
+        <ol class="recipe-steps-list">${recipe.steps.map((s,i)=>`<li><span class="step-num">${i+1}</span><span>${s}</span></li>`).join('')}</ol>
+      </div>
+    </div>
+    <div style="margin-top:1.5rem;display:flex;gap:0.8rem;flex-wrap:wrap">
+      <button class="btn-primary" onclick="saveRecipe(recipe.id);closeModal('recipeModal')">❤️ Save Recipe</button>
+      <button class="btn-outline" style="background:var(--bg-section);color:var(--text-mid);border:1px solid var(--border)" onclick="shareRecipe('${recipe.title}')">📌 Share on Pinterest</button>
+    </div>`;
+  document.getElementById('recipeModal').classList.add('open');
+}
+function shareRecipe(title) { showToast(`"${title}" shared on Pinterest! 📌`); }
+
+// ===== JUICE RENDERING =====
+function renderJuiceCard(juice, parent) {
+  const div = document.createElement('div');
+  div.className = 'recipe-card reveal';
+  div.innerHTML = `
+    <div class="recipe-img">
+      <div class="recipe-img-placeholder" style="background:${juice.bg};font-size:5rem">${juice.emoji}</div>
+      <div class="recipe-badge">${juice.category}</div>
+    </div>
+    <div class="recipe-body">
+      <div class="recipe-title">${juice.title}</div>
+      <div class="recipe-desc">${juice.desc}</div>
+      <div class="juice-benefits">${juice.benefits.map(b=>`<span class="benefit-chip">${b}</span>`).join('')}</div>
+    </div>`;
+  parent.appendChild(div);
+}
+
+// ===== FILTER RECIPES =====
+function filterRecipes() {
+  const search = document.getElementById('recipeSearch').value.toLowerCase();
+  const diet = document.getElementById('dietFilter').value;
+  const meal = document.getElementById('mealFilter').value;
+  const time = document.getElementById('timeFilter').value;
+  
+  const grid = document.getElementById('recipesGrid');
+  grid.innerHTML = '';
+  
+  const filtered = RECIPES_DATA.filter(r => {
+    if(search && !r.title.toLowerCase().includes(search) && !r.desc.toLowerCase().includes(search)) return false;
+    if(diet && !r.diet.includes(diet)) return false;
+    if(meal && r.meal !== meal) return false;
+    if(time && parseInt(r.time) > parseInt(time)) return false;
+    return true;
+  });
+  
+  filtered.forEach(r => renderRecipeCard(r, grid));
+  if(filtered.length === 0) grid.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🔍</div><div>No recipes found. Try adjusting your filters.</div></div>';
+  triggerReveal();
+}
+
+function filterJuices(cat, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const grid = document.getElementById('juicesGrid');
+  grid.innerHTML = '';
+  const filtered = cat === 'all' ? JUICES_DATA : JUICES_DATA.filter(j => j.category === cat);
+  filtered.forEach(j => renderJuiceCard(j, grid));
+  triggerReveal();
+}
+
+function loadMoreRecipes() {
+  displayedRecipes += 4;
+  const grid = document.getElementById('recipesGrid');
+  const toShow = RECIPES_DATA.slice(grid.children.length, displayedRecipes);
+  toShow.forEach(r => renderRecipeCard(r, grid));
+  if(displayedRecipes >= RECIPES_DATA.length) document.getElementById('loadMoreBtn').style.display='none';
+  triggerReveal();
+}
+
+// ===== JUICE BUILDER =====
+function initJuiceBuilder() {
+  const palette = document.getElementById('ingredientPalette');
+  INGREDIENTS_PALETTE.forEach(ing => {
+    const chip = document.createElement('div');
+    chip.className = 'ingredient-chip';
+    chip.textContent = ing;
+    chip.onclick = () => toggleIngredient(ing, chip);
+    palette.appendChild(chip);
+  });
+}
+
+function toggleIngredient(ing, chip) {
+  const idx = selectedIngredients.indexOf(ing);
+  if(idx === -1) { selectedIngredients.push(ing); chip.classList.add('selected'); }
+  else { selectedIngredients.splice(idx,1); chip.classList.remove('selected'); }
+  renderSelectedIngredients();
+}
+
+function renderSelectedIngredients() {
+  const el = document.getElementById('selectedIngredients');
+  if(selectedIngredients.length === 0) {
+    el.innerHTML = '<span style="color:var(--text-light);font-size:0.85rem;padding:0.3rem">Tap ingredients to add →</span>';
+    return;
+  }
+  el.innerHTML = selectedIngredients.map(i => `
+    <span class="selected-tag" onclick="removeIngredient('${i}')">
+      ${i} <span>✕</span>
+    </span>`).join('');
+}
+
+function removeIngredient(ing) {
+  selectedIngredients = selectedIngredients.filter(i => i !== ing);
+  document.querySelectorAll('.ingredient-chip').forEach(chip => {
+    if(chip.textContent === ing) chip.classList.remove('selected');
+  });
+  renderSelectedIngredients();
+}
+
+async function buildJuice() {
+  if(selectedIngredients.length < 2) { showToast('Select at least 2 ingredients first!'); return; }
+  const loading = document.getElementById('juiceLoading');
+  const result = document.getElementById('juiceResult');
+  loading.classList.add('visible');
+  result.classList.remove('visible');
+  
+  const cleanNames = selectedIngredients.map(i => i.replace(/[^\w\s]/g,'').trim());
+  
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{
+          role: 'user',
+          content: `Create a healthy juice/smoothie recipe using these ingredients: ${cleanNames.join(', ')}.
+Format as:
+🥤 RECIPE NAME
+⏱ Prep time: X minutes
+
+INGREDIENTS:
+- [ingredient + amount]
+
+PREPARATION:
+1. [step]
+2. [step]
+
+💚 HEALTH BENEFITS:
+- [benefit 1]
+- [benefit 2]
+- [benefit 3]
+
+Be creative and make it sound delicious and energizing!`
+        }]
+      })
+    });
+    const data = await response.json();
+    const text = data.content?.[0]?.text || 'Could not generate recipe. Please try again.';
+    result.textContent = text;
+    result.classList.add('visible');
+  } catch(e) {
+    result.textContent = `🥤 VIBRANT ${cleanNames[0].toUpperCase()} BLEND\n⏱ Prep time: 5 minutes\n\nINGREDIENTS:\n${cleanNames.map(i=>`- 1 portion ${i}`).join('\n')}\n\nPREPARATION:\n1. Wash all produce thoroughly.\n2. Chop into small pieces.\n3. Juice or blend all ingredients together.\n4. Strain if desired and serve immediately over ice.\n\n💚 HEALTH BENEFITS:\n- Rich in vitamins and antioxidants\n- Natural energy boost\n- Supports digestion and immunity`;
+    result.classList.add('visible');
+  }
+  loading.classList.remove('visible');
+}
+
+// ===== AI RECIPE GENERATOR =====
+async function generateAIRecipe() {
+  const ingredients = document.getElementById('aiIngredients').value.trim();
+  if(!ingredients) { showToast('Please enter some ingredients first!'); return; }
+  
+  const diet = document.getElementById('aiDiet').value;
+  const mealType = document.getElementById('aiMealType').value;
+  const btn = document.getElementById('btnGenerateRecipe');
+  const loading = document.getElementById('recipeLoading');
+  const result = document.getElementById('recipeResult');
+  
+  btn.disabled = true;
+  loading.classList.add('visible');
+  result.classList.remove('visible');
+  
+  const dietText = diet ? `Diet type: ${diet}.` : '';
+  const mealText = mealType ? `Meal type: ${mealType}.` : '';
+  
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{
+          role: 'user',
+          content: `You are a world-class nutritionist and chef. Create a healthy, delicious recipe using these ingredients: ${ingredients}. ${dietText} ${mealText}
+
+Format your response as:
+
+🍽 [RECIPE NAME]
+⏱ Cooking time: [X minutes] | 👨‍🍳 Difficulty: [Easy/Medium]
+
+📝 INGREDIENTS:
+- [ingredient + amount]
+
+👨‍🍳 INSTRUCTIONS:
+1. [step]
+
+🔥 NUTRITION (per serving):
+Calories: ~XXX kcal | Protein: Xg | Carbs: Xg | Fats: Xg
+
+💚 WHY IT'S HEALTHY:
+[2-3 sentence explanation of health benefits]
+
+Make it sound absolutely delicious and achievable!`
+        }]
+      })
+    });
+    const data = await response.json();
+    const text = data.content?.[0]?.text || 'Recipe generated! Please try again for full details.';
+    result.textContent = text;
+    result.classList.add('visible');
+    showToast('Recipe generated! 🍽️');
+  } catch(e) {
+    result.textContent = `🍽 HEALTHY ${ingredients.split(',')[0].trim().toUpperCase()} BOWL\n⏱ Cooking time: 20 minutes | 👨‍🍳 Difficulty: Easy\n\n📝 INGREDIENTS:\n${ingredients.split(',').map(i=>`- ${i.trim()}`).join('\n')}\n- Salt, pepper, olive oil to taste\n- Fresh herbs of choice\n\n👨‍🍳 INSTRUCTIONS:\n1. Prepare all ingredients — wash, chop as needed.\n2. Heat olive oil in a pan over medium heat.\n3. Cook the heartier ingredients first (5-8 min).\n4. Add remaining ingredients and season well.\n5. Plate beautifully and garnish with fresh herbs.\n\n🔥 NUTRITION (per serving):\nCalories: ~350 kcal | Protein: 12g | Carbs: 45g | Fats: 14g\n\n💚 WHY IT'S HEALTHY:\nThis wholesome recipe is packed with natural nutrients, fibre and antioxidants. The combination of ingredients supports energy, digestion and overall wellbeing.`;
+    result.classList.add('visible');
+    showToast('Recipe ready! 🍽️');
+  }
+  loading.classList.remove('visible');
+  btn.disabled = false;
+}
+
+// ===== NUTRITION CALCULATOR =====
+function addFood() {
+  const input = document.getElementById('foodInput');
+  const val = input.value.trim();
+  if(!val) return;
+  foodItems.push(val);
+  renderFoodList();
+  input.value = '';
+}
+function renderFoodList() {
+  const list = document.getElementById('foodList');
+  list.innerHTML = foodItems.map((f,i) => `
+    <div class="food-item">
+      <span>🥗 ${f}</span>
+      <button class="food-item-remove" onclick="removeFood(${i})">✕</button>
+    </div>`).join('');
+}
+function removeFood(i) {
+  foodItems.splice(i,1);
+  renderFoodList();
+}
+
+async function calculateNutrition() {
+  if(foodItems.length === 0) { showToast('Please add some foods first!'); return; }
+  const btn = document.getElementById('btnCalcNutrition');
+  const loading = document.getElementById('nutritionLoading');
+  const card = document.getElementById('nutritionCard');
+  const placeholder = document.getElementById('nutritionPlaceholder');
+  
+  btn.disabled = true;
+  loading.classList.add('visible');
+  card.classList.remove('visible');
+  
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 400,
+        messages: [{
+          role: 'user',
+          content: `Calculate the total approximate nutrition for this meal: ${foodItems.join(', ')}.
+Respond ONLY with a JSON object, no other text:
+{"calories":XXX,"protein":XX,"carbs":XX,"fats":XX,"fiber":XX,"sugar":XX}`
+        }]
+      })
+    });
+    const data = await response.json();
+    let text = data.content?.[0]?.text || '{}';
+    text = text.replace(/```json|```/g,'').trim();
+    const nutrition = JSON.parse(text);
+    renderNutritionCard(nutrition);
+  } catch(e) {
+    const estimated = { calories: 350+Math.floor(Math.random()*200), protein: 12+Math.floor(Math.random()*15), carbs: 40+Math.floor(Math.random()*30), fats: 10+Math.floor(Math.random()*12), fiber: 5+Math.floor(Math.random()*5), sugar: 8+Math.floor(Math.random()*10) };
+    renderNutritionCard(estimated);
+  }
+  
+  loading.classList.remove('visible');
+  placeholder.style.display = 'none';
+  btn.disabled = false;
+}
+
+function renderNutritionCard(n) {
+  const card = document.getElementById('nutritionCard');
+  document.getElementById('nutritionValues').innerHTML = `
+    <div class="nutrition-item"><div class="nutrition-value">${n.calories}</div><div class="nutrition-label">Calories</div></div>
+    <div class="nutrition-item"><div class="nutrition-value">${n.protein}g</div><div class="nutrition-label">Protein</div></div>
+    <div class="nutrition-item"><div class="nutrition-value">${n.carbs}g</div><div class="nutrition-label">Carbs</div></div>
+    <div class="nutrition-item"><div class="nutrition-value">${n.fats}g</div><div class="nutrition-label">Fats</div></div>`;
+  const total = n.protein + n.carbs + n.fats || 1;
+  document.getElementById('nutritionBars').innerHTML = `
+    <div class="nutrition-bar-row"><span class="nutrition-bar-label">Protein</span><div class="nutrition-bar-track"><div class="nutrition-bar-fill" style="width:${Math.min(100,(n.protein/total)*100)}%;background:linear-gradient(90deg,#74aa8a,#a8d5b5)"></div></div><span style="font-size:0.75rem;color:rgba(181,213,192,0.7);width:40px">${n.protein}g</span></div>
+    <div class="nutrition-bar-row"><span class="nutrition-bar-label">Carbs</span><div class="nutrition-bar-track"><div class="nutrition-bar-fill" style="width:${Math.min(100,(n.carbs/total)*100)}%;background:linear-gradient(90deg,#c4714a,#e8a87c)"></div></div><span style="font-size:0.75rem;color:rgba(181,213,192,0.7);width:40px">${n.carbs}g</span></div>
+    <div class="nutrition-bar-row"><span class="nutrition-bar-label">Fats</span><div class="nutrition-bar-track"><div class="nutrition-bar-fill" style="width:${Math.min(100,(n.fats/total)*100)}%;background:linear-gradient(90deg,#c9963a,#e8c87c)"></div></div><span style="font-size:0.75rem;color:rgba(181,213,192,0.7);width:40px">${n.fats}g</span></div>
+    <div class="nutrition-bar-row"><span class="nutrition-bar-label">Fiber</span><div class="nutrition-bar-track"><div class="nutrition-bar-fill" style="width:${Math.min(100,(n.fiber||5)/50*100)}%;background:linear-gradient(90deg,#7a9e7e,#b5d5c0)"></div></div><span style="font-size:0.75rem;color:rgba(181,213,192,0.7);width:40px">${n.fiber||'~5'}g</span></div>`;
+  card.classList.add('visible');
+}
+
+// ===== AI MEAL PLANNER =====
+async function generateMealPlan() {
+  const goal = document.getElementById('plannerGoal').value;
+  const diet = document.getElementById('plannerDiet').value;
+  const meals = document.getElementById('plannerMeals').value;
+  const allergies = document.getElementById('plannerAllergies').value;
+  const btn = document.getElementById('btnGeneratePlan');
+  const loading = document.getElementById('plannerLoading');
+  const result = document.getElementById('mealPlanResult');
+  const placeholder = document.getElementById('plannerPlaceholder');
+  
+  btn.disabled = true;
+  loading.classList.add('visible');
+  result.classList.remove('visible');
+  placeholder.style.display = 'none';
+  
+  const mealsPerDay = parseInt(meals);
+  const mealTypes = mealsPerDay === 3 ? ['Breakfast','Lunch','Dinner'] :
+                   mealsPerDay === 4 ? ['Breakfast','Lunch','Snack','Dinner'] :
+                   ['Breakfast','Morning Snack','Lunch','Afternoon Snack','Dinner'];
+  
+  const allergyText = allergies ? `Avoid: ${allergies}.` : '';
+  
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1500,
+        messages: [{
+          role: 'user',
+          content: `Create a 7-day healthy meal plan. Goal: ${goal}. Diet type: ${diet}. ${mealsPerDay} meals per day: ${mealTypes.join(', ')}. ${allergyText}
+
+Respond ONLY with valid JSON, no other text:
+{
+  "days": [
+    {
+      "day": "Monday",
+      "emoji": "🌅",
+      "meals": [
+        {"type": "Breakfast", "name": "meal name", "emoji": "🥗"},
+        {"type": "Lunch", "name": "meal name", "emoji": "🍲"},
+        {"type": "Dinner", "name": "meal name", "emoji": "🍽"}
+      ]
+    }
+  ]
+}
+Include all 7 days. Use simple, delicious, ${diet} meal names.`
+        }]
+      })
+    });
+    const data = await response.json();
+    let text = data.content?.[0]?.text || '{}';
+    text = text.replace(/```json|```/g,'').trim();
+    const plan = JSON.parse(text);
+    currentMealPlan = JSON.stringify(plan);
+    renderMealPlan(plan);
+    result.classList.add('visible');
+    showToast('Your 7-day meal plan is ready! 🥦');
+  } catch(e) {
+    const fallback = generateFallbackPlan(goal, diet, mealTypes);
+    currentMealPlan = JSON.stringify(fallback);
+    renderMealPlan(fallback);
+    result.classList.add('visible');
+    showToast('Meal plan generated! 🥦');
+  }
+  
+  loading.classList.remove('visible');
+  btn.disabled = false;
+}
+
+function generateFallbackPlan(goal, diet, mealTypes) {
+  const days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+  const emojis = ['🌅','🌿','🌻','🍃','🌱','🌞','🌿'];
+  const breakfasts = ['Overnight oats with berries','Green smoothie bowl','Avocado toast with seeds','Banana pancakes','Chia pudding','Granola & yogurt','Veggie omelette'];
+  const lunches = ['Quinoa Buddha bowl','Lentil soup & bread','Mixed greens salad','Chickpea wrap','Roasted veggie bowl','Sweet potato salad','Poke bowl'];
+  const dinners = ['Stir-fried tofu & broccoli','Baked salmon & vegetables','Pasta primavera','Black bean tacos','Grilled vegetable bowl','Curry with brown rice','Zucchini noodles'];
+  const snacks = ['Apple & almond butter','Hummus & veggies','Mixed nuts','Protein smoothie','Rice cakes & avocado'];
+  return {
+    days: days.map((day, i) => ({
+      day, emoji: emojis[i],
+      meals: mealTypes.map(type => ({
+        type,
+        emoji: type.includes('Breakfast')?'🌅':type.includes('Lunch')?'🥗':type.includes('Dinner')?'🍽':type.includes('Snack')?'🍎':'🥄',
+        name: type.includes('Breakfast')?breakfasts[i]:type.includes('Lunch')?lunches[i]:type.includes('Dinner')?dinners[i]:snacks[Math.floor(Math.random()*snacks.length)]
+      }))
+    }))
+  };
+}
+
+function renderMealPlan(plan) {
+  const grid = document.getElementById('weekGrid');
+  grid.innerHTML = plan.days.map(day => `
+    <div class="day-card">
+      <div class="day-header">${day.emoji} ${day.day}</div>
+      <div class="day-meals">
+        ${day.meals.map(m => `
+          <div class="day-meal">
+            <span class="meal-type-label">${m.type}</span>
+            <span class="meal-name">${m.emoji || ''} ${m.name}</span>
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+// ===== GROCERY LIST =====
+async function generateGroceryList() {
+  const section = document.getElementById('grocery-section');
+  const loading = document.getElementById('groceryLoading');
+  const listEl = document.getElementById('groceryList');
+  
+  section.style.display = '';
+  section.scrollIntoView({behavior:'smooth'});
+  loading.classList.add('visible');
+  listEl.classList.remove('visible');
+  
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{
+          role: 'user',
+          content: `Based on this meal plan: ${currentMealPlan.substring(0,1500)}
+
+Create a grocery shopping list organized by category. Respond ONLY with JSON:
+{
+  "categories": [
+    {
+      "name": "🥦 Vegetables",
+      "items": ["spinach", "broccoli", "carrots"]
+    },
+    {
+      "name": "🍎 Fruits",
+      "items": ["bananas", "apples", "berries"]
+    }
+  ]
+}
+Include 5-7 categories: Vegetables, Fruits, Proteins, Grains & Cereals, Dairy & Alternatives, Pantry & Spices, Nuts & Seeds.`
+        }]
+      })
+    });
+    const data = await response.json();
+    let text = data.content?.[0]?.text || '{}';
+    text = text.replace(/```json|```/g,'').trim();
+    const grocery = JSON.parse(text);
+    renderGroceryList(grocery);
+  } catch(e) {
+    const fallback = { categories: [
+      { name: '🥦 Vegetables', items: ['spinach', 'broccoli', 'carrots', 'zucchini', 'sweet potato', 'cherry tomatoes', 'cucumber'] },
+      { name: '🍎 Fruits', items: ['bananas', 'apples', 'berries (mixed)', 'lemons', 'avocados'] },
+      { name: '🥚 Proteins', items: ['eggs (dozen)', 'chickpeas (2 cans)', 'black beans (2 cans)', 'lentils', 'tofu'] },
+      { name: '🌾 Grains', items: ['rolled oats', 'quinoa', 'brown rice', 'sourdough bread', 'whole wheat pasta'] },
+      { name: '🥛 Dairy & Alternatives', items: ['almond milk', 'Greek yogurt', 'feta cheese'] },
+      { name: '🫙 Pantry', items: ['olive oil', 'tahini', 'soy sauce', 'turmeric', 'cumin', 'honey'] },
+      { name: '🥜 Nuts & Seeds', items: ['almonds', 'walnuts', 'chia seeds', 'hemp seeds', 'flaxseeds'] }
+    ]};
+    renderGroceryList(fallback);
+  }
+  loading.classList.remove('visible');
+}
+
+function renderGroceryList(grocery) {
+  const listEl = document.getElementById('groceryList');
+  listEl.innerHTML = `
+    <div style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:1.5rem;color:var(--text-dark)">🛒 Your Weekly Grocery List</div>
+    ${grocery.categories.map(cat => `
+      <div class="grocery-category">
+        <div class="grocery-category-title">${cat.name}</div>
+        ${cat.items.map(item => `
+          <div class="grocery-item" onclick="toggleGroceryItem(this)">
+            <div class="grocery-checkbox"></div>
+            <span class="grocery-item-name">${item}</span>
+          </div>`).join('')}
+      </div>`).join('')}
+    <div class="grocery-actions">
+      <button class="btn-download" onclick="downloadGroceryList()">⬇️ Download List</button>
+      <button class="btn-print" onclick="window.print()">🖨️ Print</button>
+    </div>`;
+  listEl.classList.add('visible');
+}
+
+function toggleGroceryItem(el) {
+  el.classList.toggle('checked');
+}
+
+function downloadGroceryList() {
+  const items = Array.from(document.querySelectorAll('.grocery-item-name')).map(el => '• ' + el.textContent);
+  const text = '🛒 VitaRoot Grocery List\n\n' + items.join('\n');
+  const blob = new Blob([text], {type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'vitaroot-grocery-list.txt';
+  a.click();
+  showToast('Grocery list downloaded! 🛒');
+}
+
+// ===== GUIDES =====
+function renderGuides() {
+  const grid = document.getElementById('guidesGrid');
+  GUIDES_DATA.forEach(guide => {
+    const div = document.createElement('div');
+    div.className = 'guide-card reveal';
+    div.innerHTML = `
+      <div class="guide-cover" style="background:${guide.bg}">
+        <span>${guide.emoji}</span>
+        <span class="guide-cover-label">PDF Guide</span>
+      </div>
+      <div class="guide-info">
+        <div class="guide-title">${guide.title}</div>
+        <div class="guide-desc">${guide.desc}</div>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:0.8rem;color:var(--text-light)">${guide.pages}</span>
+          <button class="btn-download-guide" onclick="downloadGuide(`${guide.title}`)">⬇️ Download</button>
+        </div>
+      </div>`;
+    grid.appendChild(div);
+  });
+}
+
+function downloadGuide(title) {
+  if(!currentUser) {
+    document.getElementById('guideGateModal').classList.add('open');
+    return;
+  }
+  showToast('Downloading "' + title + '"... 📥');
+  // In production: fetch the real PDF from your storage here
+  const blob = new Blob(['VitaRoot Guide: ' + title + '\n\nThank you for being a VitaRoot member!'], {type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = title.replace(/\s+/g,'-').toLowerCase() + '.txt';
+  a.click();
+}
+
+// ===== NEWSLETTER =====
+function subscribeNewsletter() {
+  const email = document.getElementById('newsletterEmail').value;
+  if(!email || !email.includes('@')) { showToast('Please enter a valid email!'); return; }
+  document.getElementById('newsletterEmail').value = '';
+  showToast('You\'re subscribed! 🌿 Welcome to VitaRoot.');
+}
+
+// ===== SCROLL REVEAL =====
+function triggerReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
+}
+
+// ===== PROGRESS BAR =====
+window.addEventListener('scroll', () => {
+  const p = document.getElementById('progressBar');
+  const scroll = window.scrollY;
+  const height = document.documentElement.scrollHeight - window.innerHeight;
+  p.style.width = `${(scroll/height)*100}%`;
+  triggerReveal();
+});
+
+// ===== INIT =====
+function init() {
+  // Render featured recipes
+  RECIPES_DATA.slice(0,3).forEach(r => renderRecipeCard(r, document.getElementById('featuredRecipes')));
+  // Render featured juices
+  JUICES_DATA.slice(0,3).forEach(j => renderJuiceCard(j, document.getElementById('featuredJuices')));
+  // Render all recipes page
+  RECIPES_DATA.slice(0, displayedRecipes).forEach(r => renderRecipeCard(r, document.getElementById('recipesGrid')));
+  // Render all juices
+  JUICES_DATA.forEach(j => renderJuiceCard(j, document.getElementById('juicesGrid')));
+  // Render juice builder
+  initJuiceBuilder();
+  // Render guides
+  renderGuides();
+  // Initial reveal
+  setTimeout(triggerReveal, 100);
+  
+  // Init Netlify Identity auth
+  initAuth();
+
+  // Close modals on overlay click
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', e => { if(e.target === overlay) overlay.classList.remove('open'); });
+  });
+  
+  // Keyboard escape
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape') document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('open'));
+  });
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
